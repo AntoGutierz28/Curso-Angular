@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ServiceFavService } from '../service-fav.service';
 
 @Component({
   selector: 'app-card',
@@ -8,7 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
   @Input() dataEntrante: any;
 
-  constructor() {}
+  constructor(private servicioFavorito: ServiceFavService) {}
 
   ngOnInit(): void {}
+  agregarFavorito() {
+    this.servicioFavorito.disparador.emit({
+      data: this.dataEntrante,
+    });
+  }
 }
